@@ -1,4 +1,7 @@
-import React from "react";
+import React, {
+    ButtonHTMLAttributes,
+    DetailedHTMLProps,
+  } from "react";
 import Icon from "./Icon";
 
 const sizeClassnames = {
@@ -9,36 +12,34 @@ const sizeClassnames = {
 
 
 
-interface ButtonProps {
+export type ButtonProps = DetailedHTMLProps<
+ButtonHTMLAttributes<HTMLButtonElement>,
+HTMLButtonElement
+> & {
   size?: keyof typeof sizeClassnames;
   color?: string;
   className?: string;
-  iconName?: string;
-  iconClassName?: string;
-  iconColor?: string;
   textClassName?: string;
+  onClick?: any;
 }
 
 export const Button: React.FC<ButtonProps> = ({
   size = "big",
   color = "black",
-  iconName,
-  iconClassName,
-  iconColor,
   className,
   textClassName = "text-base",
+  onClick = ()=>{},
   ...props
 }) => {
   return (
-    <div>
       <button
         type="button"
-        className={`flex items-center space-x-3 transition text-white font-bold duration-300 ease-in-out bg-${color} ${className} focus:outline-none focus:shadow-outline ${sizeClassnames[size]}`}
+        onClick={onClick}
+        className={`flex items-center justify-center space-x-3 transition text-white font-bold duration-300 ease-in-out bg-${color} ${className} focus:outline-none focus:shadow-outline ${sizeClassnames[size]}`}
       >
-        <Icon className={`${iconName ? "" : "hidden"} ${iconClassName}`} name={iconName ? iconName : ""} />
+        
         <h4 className={`${textClassName}`}>{props.children}</h4>
         
       </button>
-    </div>
   );
 };

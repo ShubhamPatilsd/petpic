@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       colors: {
         discord: "#5865F2",
-        twitter: "#1DA1F2",
+        spotify: "#1ED760",
         github: "#181616",
         google: "#4285F4"
       }
